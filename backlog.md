@@ -1,0 +1,18 @@
+# Five Three One Backlog
+- record a set
+- - a set is reps, weight, and exercise
+- - a set can be recorded as success, failure, or skipped
+- - a set can also include notes for future reference
+- - a set has a target rep and weight
+- - the recorded rep and weight may be different from the target rep and weight
+- complete a workout
+- - a complete work also records the date and time that the workout started and completed on
+- start a workout
+- display the plates necessary for a given weight
+- create a workout plan based on the 531 big but boring format
+- - the format is for primary lifts of deadlift, bench press, squat, and military press
+- - the primary lift is then done with two accessory lifts
+- - each lift goes through three sessions with progressively heavier weights
+- - after the three sessions are complete, there is a deload session for each lift
+- choose the accessory lifts
+- add additional accessory lifts
