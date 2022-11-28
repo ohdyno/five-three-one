@@ -1,5 +1,6 @@
 package me.xingzhou.fivethreeone;
 
+import me.xingzhou.fivethreeone.entity.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,14 @@ class SessionAPITests {
     @Autowired
     private MockMvc mvc;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Test
-    @DisplayName("See the session history of an user.")
+    @DisplayName("See the session history of an user that exists.")
     void sessionHistory() throws Exception {
-        String id = "someId";
-        mvc.perform(get("/users/" + id + "/sessions"))
+        final User user = userRepository.save(new User());
+        mvc.perform(get("/users/" + user.getId() + "/sessions"))
                 .andExpect(status().isOk());
     }
 

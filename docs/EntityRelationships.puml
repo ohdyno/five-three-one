@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/ie-diagram
+
+entity User {
+    * id: number <<generated>>
+}
+
+entity Session {
+    * id: number <<generated>>
+    --
+    * userId: number [FK]
+}
+
+User -- "*" Session
+
+@enduml
