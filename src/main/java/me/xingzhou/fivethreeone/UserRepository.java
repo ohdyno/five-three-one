@@ -1,8 +1,7 @@
 package me.xingzhou.fivethreeone;
 
 import me.xingzhou.fivethreeone.entity.User;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends Repository<User, Long> {
-    User save(User user);
+public interface UserRepository extends CrudRepository<User, Long> {
 }

@@ -1,9 +1,7 @@
 package me.xingzhou.fivethreeone.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -18,5 +16,16 @@ public class User {
     @GeneratedValue
     public Long getId() {
         return id;
+    }
+
+    private List<Session> sessions;
+
+    @OneToMany(mappedBy = "user")
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
     }
 }

@@ -1,6 +1,7 @@
 package me.xingzhou.fivethreeone;
 
 import me.xingzhou.fivethreeone.entity.User;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Disabled
 class SessionAPITests {
 
     @Autowired
@@ -23,10 +25,17 @@ class SessionAPITests {
 
     @Test
     @DisplayName("See the session history of an user that exists.")
-    void sessionHistory() throws Exception {
+    void emptySessionHistory() throws Exception {
         final User user = userRepository.save(new User());
         mvc.perform(get("/users/" + user.getId() + "/sessions"))
                 .andExpect(status().isOk());
     }
 
+    @Test
+    @DisplayName("See the session history of an user that does not exist.")
+    void sessionHistoryWithNonExistentUser() throws Exception {
+        Long id = 0l;
+        mvc.perform(get("/users/" + id + "/sessions"))
+                .andExpect(status().isNotFound());
+    }
 }
