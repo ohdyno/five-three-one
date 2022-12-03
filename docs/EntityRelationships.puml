@@ -3,14 +3,77 @@
 
 entity User {
     * id: number <<generated>>
+    --
+    name: string
 }
 
-entity Session {
+entity History {
     * id: number <<generated>>
     --
     * userId: number [FK]
 }
 
-User -- "*" Session
+entity Program {
+    * id: number <<generated>>
+    --
+    * userId: number [FK]
+}
 
+entity Program_Session {
+    * programId: number [FK]
+    * sessionId: number [FK]
+}
+
+entity History_Session {
+    * historyId: number [FK]
+    * sessionId: number [FK]
+}
+
+entity Session {
+    * id: number <<generated>>
+    --
+    startTime: dateTime
+    endTime: dateTime
+}
+
+enum AmountType {
+Seconds
+Pounds
+}
+
+entity Set {
+    * id: number <<generated>>
+    --
+    * sessionId: number [FK]
+    * exerciseId: number [FK]
+    * reps: number
+    * amount: number
+    * type: string <<AmountType>>
+}
+
+entity Exercise {
+    * id: number <<generated>>
+    --
+    * name: string
+    description: string
+    illustration: string
+}
+
+User -- History
+
+History -- History_Session
+
+History_Session -- Session
+
+Session -- "*" Set
+
+Set -- "*" Exercise
+
+Set -- AmountType
+
+User -- "*" Program
+
+Program -- Program_Session
+
+Program_Session -- Session
 @enduml
